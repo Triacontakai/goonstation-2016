@@ -247,7 +247,7 @@
 				else if(newpin > 9999)
 					src.modify.pin = 9999
 				else
-					src.modify.pin = newpin
+					src.modify.pin = round(newpin)
 
 	if (href_list["mode"])
 		src.mode = text2num(href_list["mode"])
