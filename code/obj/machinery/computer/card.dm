@@ -33,6 +33,7 @@
 		var/target_name
 		var/target_owner
 		var/target_rank
+		var/target_pin
 
 		if(src.modify)
 			target_name = src.modify.name
@@ -46,6 +47,10 @@
 			target_rank = src.modify.assignment
 		else
 			target_rank = "Unassigned"
+		if(src.modify && src.modify.pin)
+			target_pin = src.modify.pin
+		else
+			target_pin = "----" //should never be called but it's here just in case
 
 
 		header += "Target: <a href='?src=\ref[src];modify=1'>[target_name]</a><br>"
@@ -62,7 +67,8 @@
 		//When both IDs are inserted
 		if (src.authenticated && src.modify)
 			body = "Registered: <a href='?src=\ref[src];reg=1'>[target_owner]</a><br>"
-			body += "Assignment: <a href='?src=\ref[src];assign=Custom Assignment'>[replacetext(target_rank, " ", "&nbsp")]</a>"
+			body += "Assignment: <a href='?src=\ref[src];assign=Custom Assignment'>[replacetext(target_rank, " ", "&nbsp")]</a><br>"
+			body += "PIN: <a href='?src=\ref[src];pin=1'>[target_pin]</a>"
 
 			//Jobs organised into sections
 			var/list/civilianjobs = list("Staff Assistant", "Barman", "Chef", "Botanist", "Chaplain", "Janitor", "Clown")
@@ -228,6 +234,20 @@
 
 			if ((src.authenticated && src.modify == t2 && (in_range(src, usr) || (istype(usr, /mob/living/silicon))) && istype(src.loc, /turf)))
 				src.modify.registered = t1
+
+	if (href_list["pin"])
+		if (src.authenticated)
+			var/currentcard = src.modify
+
+			var/newpin = input(usr, "Enter a new PIN.", "ID computer", 0) as null|num
+
+			if ((src.authenticated && src.modify == currentcard && (in_range(src, usr) || (istype(usr, /mob/living/silicon))) && istype(src.loc, /turf)))
+				if(newpin < 1000)
+					src.modify.pin = 1000
+				else if(newpin > 9999)
+					src.modify.pin = 9999
+				else
+					src.modify.pin = newpin
 
 	if (href_list["mode"])
 		src.mode = text2num(href_list["mode"])

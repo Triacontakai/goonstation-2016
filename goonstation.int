@@ -1,9 +1,12 @@
 // BEGIN_INTERNALS
 /*
-LAST_COMPILE_TIME: 1457219709
-DIR: code code\chui\example code\datums\buildmodes code\datums\buildmodes\adventure code\datums\buildmodes\adventure\elements code\datums\chemistry code\datums\chemistry\tools code\datums\critter_mobs\health code\datums\gamemodes code\datums\genetics 
+MAP_ZOOM: 1.000
+LAST_COMPILE_TIME: 1556572144
+DIR: code code\datums code\obj code\obj\item code\obj\machinery code\obj\machinery\computer code\obj\submachine 
 AUTO_FILE_DIR: OFF
 MAP_ICON_TYPE: 0
-LAST_COMPILE_VERSION: 510.1327
+LAST_COMPILE_VERSION: 512.1464
+WINDOW: code\obj\item\card.dm;code\obj\machinery\computer\card.dm;code\datums\banking.dm
+FILE: code\obj\machinery\computer\card.dm
 */
 // END_INTERNALS
