@@ -6386,11 +6386,15 @@
 						ID.registered = newname
 						ID.update_name()
 					else if (istype(src.wear_id, /obj/item/device/pda2) && src.wear_id:ID_card)
-						src.wear_id:registered = newname
-						src.wear_id:ID_card:registered = newname
+						var/obj/item/device/pda2/PDA = src.wear_id
+						var/obj/item/card/id/ID = PDA.ID_card
+
+						ID.registered = newname
+						ID.update_name()
 					for (var/obj/item/device/pda2/PDA in src.contents)
-						PDA.owner = src.real_name
-						PDA.name = "PDA-[src.real_name]"
+						PDA.registered = newname
+						PDA.owner = newname
+						PDA.name = "PDA-[newname]"
 					src.real_name = newname
 					src.name = newname
 					return 1
